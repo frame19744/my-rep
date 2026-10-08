@@ -731,6 +731,24 @@ Oct 08 02:20:07 kali systemd[1]: Finished sys-monitor.service - System resource 
 2026-10-08 02:19:35 | Load: 0.16 0.16 0.11 | Mem: 1042MB used / 889MB free | Processes: 226 | Threads: 513
 2026-10-08 02:20:07 | Load: 0.09 0.15 0.10 | Mem: 1052MB used / 878MB free | Processes: 232 | Threads: 523
 
+
+```
+
+---
+***не сменил часовой пояс***
+```bash
+──(kali㉿kali)-[~/lab]
+└─$ sudo timedatectl set-timezone Asia/Yekaterinburg
+──(kali㉿kali)-[~/lab]
+└─$ timedatectl status
+               Local time: Thu 2026-10-08 11:26:37 +05
+           Universal time: Thu 2026-10-08 06:26:37 UTC
+                 RTC time: Thu 2026-10-08 06:26:37
+                Time zone: Asia/Yekaterinburg (+05, +0500)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+                                                      
 ```
 
                                                                                       
