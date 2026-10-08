@@ -400,7 +400,7 @@ newfile.txt
 file.txt (END)
 ```
 ---
-***three**
+***three***
 ```bash
 ──(kali㉿kali)-[~/lab]
 └─$ tree -L 2 ../
