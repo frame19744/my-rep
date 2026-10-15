@@ -1,133 +1,314 @@
-# ДЗ Урок3.
+# Дз к Уроку №4
 
-```bash
-
-Startting Nmap 7.99 ( https://nmap.org ) at 2026-10-14 12:05 +0500
-Nmap scan report for scanme.nmap.org (45.33.32.156)
-Host is up (0.22s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
-Not shown: 997 closed tcp ports (reset)
-PORT     STATE SERVICE
-22/tcp   open  ssh
-80/tcp   open  http
-9929/tcp open  nping-echo
-
-Nmap done: 1 IP address (1 host up) scanned in 25.82 seconds
-```
+1. ***Перевод чисел.***
 ---
-```bash
-nmap -sV scanme.nmap.org
-Starting Nmap 7.99 ( https://nmap.org ) at 2026-10-14 12:07 +0500
-Nmap scan report for scanme.nmap.org (45.33.32.156)
-Host is up (0.21s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
-Not shown: 997 closed tcp ports (reset)
+137
 
-PORT     STATE SERVICE    VERSION
-22/tcp   open  tcpwrapped
-80/tcp   open  http       Apache httpd 2.4.7 ((Ubuntu))
-9929/tcp open  nping-echo Nping echo
+В 2СС (деление на 2):
+137 / 2 = 68 (ост. 1)
+68 / 2 = 34 (ост. 0)
+34 / 2 = 17 (ост. 0)
+17 / 2 = 8 (ост. 1)
+8 / 2 = 4 (ост. 0)
+4 / 2 = 2 (ост. 0)
+2 / 2 = 1 (ост. 0)
+1 / 2 = 0 (ост. 1)
+Результат: 10001001 2cc
+В 8СС: : 010 \ 001 \ 001 \ -> 211
+В 16СС: 1000 \ 1001 \ -> 89
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 33.44 seconds
-```
+245
+
+В 2СС (деление на 2):
+245 / 2 = 122 (ост. 1)
+122 / 2 = 61 (ост. 0)
+61 / 2 = 30 (ост. 1)
+30 / 2 = 15 (ост. 0)
+15 / 2 = 7 (ост. 1)
+7 / 2 = 3 (ост. 1)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 11110101
+В 8СС: 011 \ 110 \ 101 \->365
+В 16СС: 1111 \ 0101 \->F5
+
+378
+
+В 2СС (деление на 2):
+378 / 2 = 189 (ост. 0)
+189 / 2 = 94 (ост. 1)
+94 / 2 = 47 (ост. 0)
+47 / 2 = 23 (ост. 1)
+23 / 2 = 11 (ост. 1)
+11 / 2 = 5 (ост. 1)
+5 / 2 = 2 (ост. 1)
+2 / 2 = 1 (ост. 0)
+1 / 2 = 0 (ост. 1)
+Результат: 101111010_2
+В 8СС: 001 \ 011 \ 110 \ 101 \->572
+В 16СС: 0001 \ 0111 \ 1010 \->17A
+
+512
+
+В 2СС (деление на 2):
+512 / 2 = 256 (ост. 0)
+256 / 2 = 128 (ост. 0)
+128 / 2 = 64 (ост. 0)
+64 / 2 = 32 (ост. 0)
+32 / 2 = 16 (ост. 0)
+16 / 2 = 8 (ост. 0)
+8 / 2 = 4 (ост. 0)
+4 / 2 = 2 (ост. 0)
+2 / 2 = 1 (ост. 0)
+1 / 2 = 0 (ост. 1)
+Результат: 1000000000_2
+В 8СС: 001 \ 000 \ 000 \ 000 \->1000
+В 16СС: 0010 \ 0000 \ 0000 \->200
+
+729
+
+В 2СС (деление на 2):
+729 / 2 = 364 (ост. 1)
+364 / 2 = 182 (ост. 0)
+182 / 2 = 91 (ост. 0)
+91 / 2 = 45 (ост. 1)
+45 / 2 = 22 (ост. 1)
+22 / 2 = 11 (ост. 0)
+11 / 2 = 5 (ост. 1)
+5 / 2 = 2 (ост. 1)
+2 / 2 = 1 (ост. 0)
+1 / 2 = 0 (ост. 1)
+Результат: 1011011001_2
+В 8СС: 001 \ 011 \ 011 \ 001 \->1331
+В 16СС: 0010 \ 1101 \ 1001 \->2D9
+
+845
+
+В 2СС (деление на 2):
+845 / 2 = 422 (ост. 1)
+422 / 2 = 211 (ост. 0)
+211 / 2 = 105 (ост. 1)
+105 / 2 = 52 (ост. 1)
+52 / 2 = 26 (ост. 0)
+26 / 2 = 13 (ост. 0)
+13 / 2 = 6 (ост. 1)
+6 / 2 = 3 (ост. 0)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 1101001101_2
+В 8СС: 001 \ 101 \ 001 \ 101 \->1515
+В 16СС: 0011 \ 0100 \ 1101 \->34D
+
+999
+
+В 2СС (деление на 2):
+999 / 2 = 499 (ост. 1)
+499 / 2 = 249 (ост. 1)
+249 / 2 = 124 (ост. 1)
+124 / 2 = 62 (ост. 0)
+62 / 2 = 31 (ост. 0)
+31 / 2 = 15 (ост. 1)
+15 / 2 = 7 (ост. 1)
+7 / 2 = 3 (ост. 1)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 1111100111_2
+В 8СС: 001 \ 111 \ 100 \ 111 \->1747
+В 16СС: 0011 \ 1110 \ 0111 \->3E7
+
+1023
+
+В 2СС (деление на 2):
+1023 / 2 = 511 (ост. 1)
+511 / 2 = 255 (ост. 1)
+255 / 2 = 127 (ост. 1)
+127 / 2 = 63 (ост. 1)
+63 / 2 = 31 (ост. 1)
+31 / 2 = 15 (ост. 1)
+15 / 2 = 7 (ост. 1)
+7 / 2 = 3 (ост. 1)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 1111111111_2
+В 8СС: 001 \ 111 \ 111 \ 111 \->1777
+В 16СС: 0011 \ 1111 \ 1111 \->3FF
+
+2047
+
+В 2СС (деление на 2):
+2047 / 2 = 1023 (ост. 1)
+1023 / 2 = 511 (ост. 1)
+511 / 2 = 255 (ост. 1)
+255 / 2 = 127 (ост. 1)
+127 / 2 = 63 (ост. 1)
+63 / 2 = 31 (ост. 1)
+31 / 2 = 15 (ост. 1)
+15 / 2 = 7 (ост. 1)
+7 / 2 = 3 (ост. 1)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 11111111111_2
+В 8СС: 001 \ 111 \ 111 \ 111 \ 111 \->3777
+В 16СС: 0111 \ 1111 \ 1111 \->7FF
+
+4095
+
+В 2СС (деление на 2):
+4095 / 2 = 2047 (ост. 1)
+2047 / 2 = 1023 (ост. 1)
+1023 / 2 = 511 (ост. 1)
+511 / 2 = 255 (ост. 1)
+255 / 2 = 127 (ост. 1)
+127 / 2 = 63 (ост. 1)
+63 / 2 = 31 (ост. 1)
+31 / 2 = 15 (ост. 1)
+15 / 2 = 7 (ост. 1)
+7 / 2 = 3 (ост. 1)
+3 / 2 = 1 (ост. 1)
+1 / 2 = 0 (ост. 1)
+Результат: 111111111111_2
+В 8СС: 001 \ 111 \ 111 \ 111 \ 111 \ 111 \->7777
+В 16СС: 1111 \ 1111 \ 1111 \->FFF
 ---
-```bash
-map -O scanme.nmap.org
-Starting Nmap 7.99 ( https://nmap.org ) at 2026-10-14 12:08 +0500
-Nmap scan report for scanme.nmap.org (45.33.32.156)
-Host is up (0.21s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
-Not shown: 997 closed tcp ports (reset)
-PORT     STATE SERVICE
-22/tcp   open  ssh
-80/tcp   open  http
-9929/tcp open  nping-echo
-Device type: general purpose|router
-Running: Linux 5.X, MikroTik RouterOS 7.X
-OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3
-OS details: Linux 5.0 - 5.14, MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)
-Network Distance: 25 hops
-
-OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 23.62 seconds
-```
-```bash
-nmap -p 22,80,443 scanme.nmap.org
-nmap -p 1-1024 scanme.nmap.org
-nmap -p 20-25,80,443,3306,8080 scanme.nmap.org
-nmap -p ftp,ssh,http,https scanme.nmap.org
-nmap -p- scanme.nmap.org
-nmap --open scanme.nmap.org
-```
+2. ***Побитовые операции***
 ---
-```bash
-map -p 1-1000 --open -oG - scanme.nmap.org
-# Nmap 7.99 scan initiated Wed Oct 14 12:11:12 2026 as: /usr/lib/nmap/nmap -p 1-1000 --open -oG - scanme.nmap.org
-Host: 45.33.32.156 (scanme.nmap.org)    Status: Up
-Host: 45.33.32.156 (scanme.nmap.org)    Ports: 22/open/tcp//ssh///, 80/open/tcp//http///
-# Nmap done at Wed Oct 14 12:11:19 2026 -- 1 IP address (1 host up) scanned in 7.79 seconds
-```
+1. Пара (45, 23)
+
+45 в 2СС: 101101
+23 в 2СС: 010111
+Побитовое И (AND):
+Копировать
+101101
+&
+010111
+------
+000101
+Результат 000101 (2cc) в 10СС: 1 * 2^2 + 0 * 2^1 + 1 * 2^0 = 4 + 0 + 1 = 5
+
+2. Пара (78, 56)
+
+78 в 2СС: 1001110
+56 в 2СС: 0111000
+Побитовое И (AND):
+Копировать
+1001110
+&
+0111000
+-------
+0001000
+Результат 0001000 (2cc) в 10СС: 1 * 2^3 = 8
+
+3. Пара (123, 85)
+
+123 в 2СС: 1111011
+85 в 2СС: 1010101
+Побитовое И (AND):
+Копировать
+1111011
+&
+1010101
+-------
+1010001
+Результат 1010001 (2cc) в 10СС: 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 0 * 2^3 + 0 * 2^2 + 0 * 2^1 + 1 * 2^0 = 64 + 16 + 1 = 81
+
+4. Пара (156, 99)
+
+156 в 2СС: 10011100
+99 в 2СС: 01100011
+Побитовое И (AND):
+Копировать
+10011100
+&
+01100011
+--------
+00000000
+Результат 00000000 (2cc) в 10СС: 0
+
+5. Пара (255, 170)
+
+255 в 2СС: 11111111
+170 в 2СС: 10101010
+Побитовое И (AND):
+Копировать
+11111111
+&
+10101010
+--------
+10101010
+Результат 10101010 (2cc) в 10СС: 1 * 2^7 + 0 * 2^6 + 1 * 2^5 + 0 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0 = 128 + 32 + 8 + 2 = 170
+
 ---
-```bash
-nmap -sS -sV -O -A --reason -p 1-1000 scanme.nmap.org
-Starting Nmap 7.99 ( https://nmap.org ) at 2026-10-14 12:11 +0500
-Nmap scan report for scanme.nmap.org (45.33.32.156)
-Host is up, received echo-reply ttl 45 (0.21s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
-Not shown: 998 closed tcp ports (reset)
-PORT   STATE SERVICE REASON         VERSION
-22/tcp open  ssh     syn-ack ttl 45 OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|_  2048 20:3d:2d:44:62:2a:b0:5a:9d:b5:b3:05:14:c2:a6:b2 (RSA)
-80/tcp open  http    syn-ack ttl 38 Apache httpd 2.4.7 ((Ubuntu))
-|_http-title: Go ahead and ScanMe!
-|_http-favicon: Nmap Project
-|_http-server-header: Apache/2.4.7 (Ubuntu)
-Device type: general purpose
-Running: Linux 5.X
-OS CPE: cpe:/o:linux:linux_kernel:5
-OS details: Linux 5.0 - 5.14
-Network Distance: 25 hops
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+3. ***Полный разбор сети***
+---
+Часть A — Полный разбор сети
 
-TRACEROUTE (using port 23/tcp)
-HOP RTT       ADDRESS
-1   1.84 ms   192.168.1.1
-2   2.84 ms   194.135.144.1
-3   2.88 ms   217.64.140.226
-4   2.84 ms   10.184.4.5
-5   7.71 ms   kir-cr03-eth-trunk10.650.chel.mts-internet.net (212.188.60.224)
-6   51.81 ms  212.188.0.63
-7   51.39 ms  che-cr02-ae10.63.sam.mts-internet.net (212.188.42.129)
-8   ... 9
-10  48.63 ms  radio-cr01-ae3.0.hel.mts-internet.net (212.188.29.109)
-11  51.94 ms  hls-b3-link.ip.twelve99.net (213.248.88.28)
-12  81.17 ms  sto-bb2-link.ip.twelve99.net (62.115.122.34)
-13  85.90 ms  kbn-bb6-link.ip.twelve99.net (62.115.139.173)
-14  139.87 ms ewr-bb2-link.ip.twelve99.net (80.91.254.91)
-15  138.31 ms nyk-b17-link.ip.twelve99.net (62.115.137.15)
-16  145.98 ms akamai-ic-371098.ip.twelve99-cust.net (62.115.38.45)
-17  140.28 ms ae2.r02.lga01.icn.netarch.akamai.com (23.203.156.40)
-18  173.55 ms ae27.r01.ord01.icn.netarch.akamai.com (23.193.112.244)
-19  213.47 ms ae16.r01.sjc01.icn.netarch.akamai.com (23.32.62.79)
-20  218.81 ms ae1.r12.sjc01.ien.netarch.akamai.com (23.207.232.37)
-21  249.91 ms ae22.gw4-scz1.netarch.akamai.com (23.203.158.53)
-22  ... 24
-25  212.08 ms scanme.nmap.org (45.33.32.156)
+-. IP: 192.168.10.77, Маска: 255.255.255.192 (/26)
 
-OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 75.44 seconds
+Адрес сети: 192.168.10.64
+Broadcast: 192.168.10.127
+Первый хост: 192.168.10.65
+Последний хост: 192.168.10.126
+Количество хостов: 62
 
-grep -i "modesetting\|driver for screen" /var/log/Xorg.0.log
-[    16.254] (==) Matched modesetting as autoconfigured driver 1
-[    16.255] (II) LoadModule: "modesetting"
-[    16.255] (II) Loading /usr/lib/xorg/modules/drivers/modesetting_drv.so
-[    16.257] (II) Module modesetting: vendor="X.Org Foundation"
-[    16.260] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
-                                                                                   
-```
+-. IP: 10.10.10.200, Маска: 255.255.255.224 (/27)
 
+Адрес сети: 10.10.10.192
+Broadcast: 10.10.10.223
+Первый хост: 10.10.10.193
+Последний хост: 10.10.10.222
+Количество хостов: 30
 
+-. IP: 192.168.1.250, Маска: 255.255.255.240 (/28)
 
+Адрес сети: 192.168.1.240
+Broadcast: 192.168.1.255
+Первый хост: 192.168.1.241
+Последний хост: 192.168.1.254
+Количество хостов: 14
 
+Часть B — CIDR 
+
+-. 192.168.1.130/26
+
+Маска: 255.255.255.192
+Адрес сети: 192.168.1.128
+Broadcast: 192.168.1.191
+Диапазон хостов: 192.168.1.129 – 192.168.1.190
+
+-. 192.168.10.70/27
+
+Маска: 255.255.255.224
+Адрес сети: 192.168.10.64
+Broadcast: 192.168.10.95
+Диапазон хостов: 192.168.10.65 – 192.168.10.94
+
+-. 172.16.0.200/28
+
+Маска: 255.255.255.240
+Адрес сети: 172.16.0.192
+Broadcast: 172.16.0.207
+Диапазон хостов: 172.16.0.193 – 172.16.0.206
+
+Часть C — Деление сети
+
+-. Разделите сеть 192.168.1.0/24 на 8 подсетей
+Для получения 8 подсетей необходимо заимствовать 3 бита из хостовой части ($2^3 = 8$).
+
+Новая маска: /27 (255.255.255.224)
+Шаг подсети: 32 адреса (30 хостов)
+Первые 3 подсети полностью:
+Сеть: 192.168.1.0, Broadcast: 192.168.1.31, Хосты: .1 – .30
+Сеть: 192.168.1.32, Broadcast: 192.168.1.63, Хосты: .33 – .62
+Сеть: 192.168.1.64, Broadcast: 192.168.1.95, Хосты: .65 – .94
+-. Есть сеть 10.0.0.0/24. Нужно минимум 30 хостов в каждой подсети.
+Для 30 хостов требуется 30 + 2 = 32 адреса. 
+маска: /27 (255.255.255.224)
+Количество подсетей: 8 
+1	10.0.0.0/27	10.0.0.1 – 10.0.0.30	10.0.0.31	
+2	10.0.0.32/27	10.0.0.33 – 10.0.0.62	10.0.0.63	
+3	10.0.0.64/27	10.0.0.65 – 10.0.0.94	10.0.0.95	
+4	10.0.0.96/27	10.0.0.97 – 10.0.0.126	10.0.0.127	
+5	10.0.0.128/27	10.0.0.129 – 10.0.0.158	10.0.0.159	
+6	10.0.0.160/27	10.0.0.161 – 10.0.0.190	10.0.0.191	
+7	10.0.0.192/27	10.0.0.193 – 10.0.0.222	10.0.0.223	
+8	10.0.0.224/27	10.0.0.225 – 10.0.0.254	10.0.0.255
