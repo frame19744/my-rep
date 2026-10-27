@@ -1,314 +1,251 @@
-# Дз к Уроку №4
-
-1. ***Перевод чисел.***
+# ДЗ урок 4.
+***1. Работа с базовыми сетевыми утилитами 1.***
 ---
-137
+```bash
+ip addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:36:eb:c5 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    altname enx000c2936ebc5
+    inet 192.168.71.134/24 brd 192.168.71.255 scope global dynamic noprefixroute ens33
+       valid_lft 1680sec preferred_lft 1680sec
+    inet6 fe80::20c:29ff:fe36:ebc5/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
 
-В 2СС (деление на 2):
-137 / 2 = 68 (ост. 1)
-68 / 2 = 34 (ост. 0)
-34 / 2 = 17 (ост. 0)
-17 / 2 = 8 (ост. 1)
-8 / 2 = 4 (ост. 0)
-4 / 2 = 2 (ост. 0)
-2 / 2 = 1 (ост. 0)
-1 / 2 = 0 (ост. 1)
-Результат: 10001001 2cc
-В 8СС: : 010 \ 001 \ 001 \ -> 211
-В 16СС: 1000 \ 1001 \ -> 89
+ip route
+default via 192.168.71.2 dev ens33 proto dhcp src 192.168.71.134 metric 100 
+192.168.71.0/24 dev ens33 proto kernel scope link src 192.168.71.134 metric 100 
 
-245
+sudo ip addr add 192.168.1.100/24 dev eth0
 
-В 2СС (деление на 2):
-245 / 2 = 122 (ост. 1)
-122 / 2 = 61 (ост. 0)
-61 / 2 = 30 (ост. 1)
-30 / 2 = 15 (ост. 0)
-15 / 2 = 7 (ост. 1)
-7 / 2 = 3 (ост. 1)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 11110101
-В 8СС: 011 \ 110 \ 101 \->365
-В 16СС: 1111 \ 0101 \->F5
+sudo ip route add default via 192.168.1.1
 
-378
+ping -c 6 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=128 time=65.2 ms
+.....
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=128 time=64.1 ms
 
-В 2СС (деление на 2):
-378 / 2 = 189 (ост. 0)
-189 / 2 = 94 (ост. 1)
-94 / 2 = 47 (ост. 0)
-47 / 2 = 23 (ост. 1)
-23 / 2 = 11 (ост. 1)
-11 / 2 = 5 (ост. 1)
-5 / 2 = 2 (ост. 1)
-2 / 2 = 1 (ост. 0)
-1 / 2 = 0 (ост. 1)
-Результат: 101111010_2
-В 8СС: 001 \ 011 \ 110 \ 101 \->572
-В 16СС: 0001 \ 0111 \ 1010 \->17A
+--- 8.8.8.8 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5015ms
+rtt min/avg/max/mdev = 64.111/65.176/66.290/0.642 ms
 
-512
+traceroute -4 ya.ru
 
-В 2СС (деление на 2):
-512 / 2 = 256 (ост. 0)
-256 / 2 = 128 (ост. 0)
-128 / 2 = 64 (ост. 0)
-64 / 2 = 32 (ост. 0)
-32 / 2 = 16 (ост. 0)
-16 / 2 = 8 (ост. 0)
-8 / 2 = 4 (ост. 0)
-4 / 2 = 2 (ост. 0)
-2 / 2 = 1 (ост. 0)
-1 / 2 = 0 (ост. 1)
-Результат: 1000000000_2
-В 8СС: 001 \ 000 \ 000 \ 000 \->1000
-В 16СС: 0010 \ 0000 \ 0000 \->200
 
-729
+s -tulnp
+Netid   State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port  Process                                                                         
+udp     UNCONN   0        0                0.0.0.0:34422          0.0.0.0:*      users:(("avahi-daemon",pid=547,fd=14))                                         
+udp     UNCONN   0        0                0.0.0.0:5353           0.0.0.0:*      users:(("avahi-daemon",pid=547,fd=12))                                         
+udp     UNCONN   0        0                   [::]:50927             [::]:*      users:(("avahi-daemon",pid=547,fd=15))                                         
+udp     UNCONN   0        0                   [::]:5353              [::]:*      users:(("avahi-daemon",pid=547,fd=13))                                         
+tcp     LISTEN   0        4096           127.0.0.1:631            0.0.0.0:*      users:(("cupsd",pid=938,fd=7))                                                 
+tcp     LISTEN   0        4096               [::1]:631               [::]:*      users:(("cupsd",pid=938,fd=6))                                                 
+tcp     LISTEN   0        511                    *:80                   *:*      users:(("apache2",pid=1077,fd=4),("apache2",pid=1076,fd=4),("apache2",pid=1066,fd=4),("apache2",pid=1065,fd=4))
 
-В 2СС (деление на 2):
-729 / 2 = 364 (ост. 1)
-364 / 2 = 182 (ост. 0)
-182 / 2 = 91 (ост. 0)
-91 / 2 = 45 (ост. 1)
-45 / 2 = 22 (ост. 1)
-22 / 2 = 11 (ост. 0)
-11 / 2 = 5 (ост. 1)
-5 / 2 = 2 (ост. 1)
-2 / 2 = 1 (ост. 0)
-1 / 2 = 0 (ост. 1)
-Результат: 1011011001_2
-В 8СС: 001 \ 011 \ 011 \ 001 \->1331
-В 16СС: 0010 \ 1101 \ 1001 \->2D9
 
-845
+ nc -l -p 12345
 
-В 2СС (деление на 2):
-845 / 2 = 422 (ост. 1)
-422 / 2 = 211 (ост. 0)
-211 / 2 = 105 (ост. 1)
-105 / 2 = 52 (ост. 1)
-52 / 2 = 26 (ост. 0)
-26 / 2 = 13 (ост. 0)
-13 / 2 = 6 (ост. 1)
-6 / 2 = 3 (ост. 0)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 1101001101_2
-В 8СС: 001 \ 101 \ 001 \ 101 \->1515
-В 16СС: 0011 \ 0100 \ 1101 \->34D
+ss -tulnp
+Netid   State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port  Process                                                                         
+                                      
+tcp     LISTEN   0        1                0.0.0.0:12345          0.0.0.0:*      users:(("nc",pid=4613,fd=3))                                                   
+dig @8.8.8.8 mail.ru ANY
 
-999
+; <<>> DiG 9.20.30-1~deb13u1-Debian <<>> @8.8.8.8 mail.ru ANY
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39169
+;; flags: qr rd ra; QUERY: 1, ANSWER: 16, AUTHORITY: 0, ADDITIONAL: 1
 
-В 2СС (деление на 2):
-999 / 2 = 499 (ост. 1)
-499 / 2 = 249 (ост. 1)
-249 / 2 = 124 (ост. 1)
-124 / 2 = 62 (ост. 0)
-62 / 2 = 31 (ост. 0)
-31 / 2 = 15 (ост. 1)
-15 / 2 = 7 (ост. 1)
-7 / 2 = 3 (ост. 1)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 1111100111_2
-В 8СС: 001 \ 111 \ 100 \ 111 \->1747
-В 16СС: 0011 \ 1110 \ 0111 \->3E7
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;mail.ru.			IN	ANY
 
-1023
+;; ANSWER SECTION:
+mail.ru.		600	IN	MX	10 mxs.mail.ru.
+mail.ru.		600	IN	SOA	ns1.mail.ru. hostmaster.mail.ru. 3584225843 900 900 604800 60
+mail.ru.		60	IN	A	90.156.232.4
+mail.ru.		60	IN	A	185.180.201.1
+mail.ru.		60	IN	A	89.221.239.1
+mail.ru.		60	IN	AAAA	2a14:25c0:9100:b000::1
+mail.ru.		60	IN	AAAA	2a00:b4c0:9100:b000::1
+mail.ru.		60	IN	AAAA	2a00:1148:9100:b000::1
+mail.ru.		600	IN	NS	ns1.mail.ru.
+mail.ru.		600	IN	NS	ns2.mail.ru.
+mail.ru.		600	IN	TXT	"HARICA-zOgPcgJHt0kof3WT4rF"
+mail.ru.		600	IN	TXT	"v=spf1 redirect=_spf.mail.ru"
+mail.ru.		600	IN	TXT	"_globalsign-domain-verification=x4Mv_wznaGVeJceyWvEwGr5yWx4t6Omvxx4h0ICVAA"
+mail.ru.		600	IN	TXT	"HARICA-XPN2KzvUggNSBTD830l"
+mail.ru.		600	IN	TXT	"_globalsign-domain-verification=Si3zyfQkRVz-8n5vDXd_qWZ4EmgkzHHeRVFuRGz4IP"
+mail.ru.		600	IN	TXT	"HARICA-0D8ZO64AiWoNsbcOYD7"
 
-В 2СС (деление на 2):
-1023 / 2 = 511 (ост. 1)
-511 / 2 = 255 (ост. 1)
-255 / 2 = 127 (ост. 1)
-127 / 2 = 63 (ост. 1)
-63 / 2 = 31 (ост. 1)
-31 / 2 = 15 (ост. 1)
-15 / 2 = 7 (ост. 1)
-7 / 2 = 3 (ост. 1)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 1111111111_2
-В 8СС: 001 \ 111 \ 111 \ 111 \->1777
-В 16СС: 0011 \ 1111 \ 1111 \->3FF
+;; Query time: 111 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (TCP)
+;; WHEN: Tue Oct 27 03:09:54 EDT 2026
+;; MSG SIZE  rcvd: 603
 
-2047
 
-В 2СС (деление на 2):
-2047 / 2 = 1023 (ост. 1)
-1023 / 2 = 511 (ост. 1)
-511 / 2 = 255 (ост. 1)
-255 / 2 = 127 (ост. 1)
-127 / 2 = 63 (ост. 1)
-63 / 2 = 31 (ост. 1)
-31 / 2 = 15 (ост. 1)
-15 / 2 = 7 (ост. 1)
-7 / 2 = 3 (ост. 1)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 11111111111_2
-В 8СС: 001 \ 111 \ 111 \ 111 \ 111 \->3777
-В 16СС: 0111 \ 1111 \ 1111 \->7FF
 
-4095
-
-В 2СС (деление на 2):
-4095 / 2 = 2047 (ост. 1)
-2047 / 2 = 1023 (ост. 1)
-1023 / 2 = 511 (ост. 1)
-511 / 2 = 255 (ост. 1)
-255 / 2 = 127 (ост. 1)
-127 / 2 = 63 (ост. 1)
-63 / 2 = 31 (ост. 1)
-31 / 2 = 15 (ост. 1)
-15 / 2 = 7 (ост. 1)
-7 / 2 = 3 (ост. 1)
-3 / 2 = 1 (ост. 1)
-1 / 2 = 0 (ост. 1)
-Результат: 111111111111_2
-В 8СС: 001 \ 111 \ 111 \ 111 \ 111 \ 111 \->7777
-В 16СС: 1111 \ 1111 \ 1111 \->FFF
----
-2. ***Побитовые операции***
----
-1. Пара (45, 23)
-
-45 в 2СС: 101101
-23 в 2СС: 010111
-Побитовое И (AND):
-Копировать
-101101
-&
-010111
-------
-000101
-Результат 000101 (2cc) в 10СС: 1 * 2^2 + 0 * 2^1 + 1 * 2^0 = 4 + 0 + 1 = 5
-
-2. Пара (78, 56)
-
-78 в 2СС: 1001110
-56 в 2СС: 0111000
-Побитовое И (AND):
-Копировать
-1001110
-&
-0111000
--------
-0001000
-Результат 0001000 (2cc) в 10СС: 1 * 2^3 = 8
-
-3. Пара (123, 85)
-
-123 в 2СС: 1111011
-85 в 2СС: 1010101
-Побитовое И (AND):
-Копировать
-1111011
-&
-1010101
--------
-1010001
-Результат 1010001 (2cc) в 10СС: 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 0 * 2^3 + 0 * 2^2 + 0 * 2^1 + 1 * 2^0 = 64 + 16 + 1 = 81
-
-4. Пара (156, 99)
-
-156 в 2СС: 10011100
-99 в 2СС: 01100011
-Побитовое И (AND):
-Копировать
-10011100
-&
-01100011
---------
-00000000
-Результат 00000000 (2cc) в 10СС: 0
-
-5. Пара (255, 170)
-
-255 в 2СС: 11111111
-170 в 2СС: 10101010
-Побитовое И (AND):
-Копировать
-11111111
-&
-10101010
---------
-10101010
-Результат 10101010 (2cc) в 10СС: 1 * 2^7 + 0 * 2^6 + 1 * 2^5 + 0 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0 = 128 + 32 + 8 + 2 = 170
+```
 
 ---
-3. ***Полный разбор сети***
+***2.  Настройка NAT и проверка сетевого взаимодействия.***
+
+*Схема*
+```
+(kali) ip 192.168.10.50/24, шлюз 192.168.10.1--- ip 192.168.10.1/24(debian1) ip 172.16.0.1/30---- ip 172.16.0.2/30(debian2) ip 192.168.1.73/24-- ip 192.168.1.1 (gw)-- Internet
+```
+```
+На debian1 (NAT1):
+
+Включить пересылку пакетов:
+ sudo sysctl -w net.ipv4.ip_forward=1
+Настроить NAT (MASQUERADE) для трафика, идущего из сети Kali во внешний мир через интерфейс eth1:
+ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+Разрешить форвардинг трафика между интерфейсами: 
+sudo iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT sudo iptables -A FORWARD -i eth1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+На debian2 (NAT2):
+
+Включить пересылку пакетов:
+ sudo sysctl -w net.ipv4.ip_forward=1
+Настроить NAT для трафика, идущего от debian1 (подсеть 172.16.0.0/30) во внешний мир через интерфейс eth1:
+ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+Разрешить форвардинг: 
+sudo iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT sudo iptables -A FORWARD -i eth1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+для сохранения правил iptables после перезагрузки используется пакет iptables-persistent (sudo apt install iptables-persistent).
+```
+*вывод команд*
+```
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=12.4 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=11.9 ms
+64 bytes от 8.8.8.8: icmp_seq=3 ttl=118 time=12.1 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=12.0 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 11.900/12.100/12.400/0.185 ms
+traceroute -n 8.8.8.8
+traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
+ 1  192.168.10.1 (192.168.10.1)  0.850 ms  0.720 ms  0.680 ms
+ 2  172.16.0.1 (172.16.0.1)  1.120 ms  1.050 ms  0.990 ms
+ 3  * * *
+ 4 192.168.1.1 (10.20.30.1)  15.400 ms  14.800 ms  15.100 ms
+ 5 185.7.180.1 2 ms     1 ms     1 ms  
+ 6 10.184.4.5 	2 ms     1 ms     1 ms  
+ 7 212.188.60.224   	6 ms     6 ms     6 ms    
+ 8 212.188.0.63  *        *       85 ms  212.188.0.63   
+ 9 *        *        *        
+ 11 *        *        *      
+ 12 *        *        *     
+ 13 74.125.49.184 	65.400 ms 64.800 ms 65.100 ms    
+ 14 108.170.235.151	78.200 ms 77.900 ms 78.050 ms   
+ 15 142.250.46.69	52.500 ms 51.800 ms 52.100 ms   
+ 16 8.8.8.8 			96.200 ms 66.600 ms 69.100 ms  
+  ```
+  ```
+  debian1:
+  sudo nano /etc/resolv.conf
+  nameserver 8.8.8.8
+nameserver 1.1.1.1
+
+На debian2:
+sudo nano /etc/resolv.conf
+
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+
+
+dig google.com
+
+; <<>> DiG 9.20.30-1~deb13u1-Debian <<>> google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35459
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; MBZ: 0x0005, udp: 4000
+;; QUESTION SECTION:
+;google.com.			IN	A
+
+;; ANSWER SECTION:
+google.com.		5	IN	A	74.125.131.113
+google.com.		5	IN	A	74.125.131.102
+google.com.		5	IN	A	74.125.131.101
+google.com.		5	IN	A	74.125.131.100
+google.com.		5	IN	A	74.125.131.139
+google.com.		5	IN	A	74.125.131.138
+
+;; Query time: 7 msec
+;; SERVER: 1.1.1.1#53(1.1.1.1) (UDP)
+;; WHEN: Tue Oct 27 11:32:50 EDT 2026
+;; MSG SIZE  rcvd: 135
+```
+*3. Настройка SSH-доступа**
+
 ---
-Часть A — Полный разбор сети
+```
+Установка и настройка SSH на debian1 и debian2
+sudo apt install openssh-server -y
+проверка службы
+udo systemctl status ssh
 
--. IP: 192.168.10.77, Маска: 255.255.255.192 (/26)
+проброс на debian1
+ssh -N -f -L 9090:localhost:8080 user@172.16.0.2
 
-Адрес сети: 192.168.10.64
-Broadcast: 192.168.10.127
-Первый хост: 192.168.10.65
-Последний хост: 192.168.10.126
-Количество хостов: 62
 
--. IP: 10.10.10.200, Маска: 255.255.255.224 (/27)
+```
+---
 
-Адрес сети: 10.10.10.192
-Broadcast: 10.10.10.223
-Первый хост: 10.10.10.193
-Последний хост: 10.10.10.222
-Количество хостов: 30
+***4.Настройка jump-host***
 
--. IP: 192.168.1.250, Маска: 255.255.255.240 (/28)
+---
+```bash
+~/.ssh/config на Kali
 
-Адрес сети: 192.168.1.240
-Broadcast: 192.168.1.255
-Первый хост: 192.168.1.241
-Последний хост: 192.168.1.254
-Количество хостов: 14
+text
+Копировать
+Host debian1-jump
+    HostName 192.168.10.1
+    User user
+    IdentityFile ~/.ssh/id_ed25519_kali
 
-Часть B — CIDR 
+Host debian2-internal
+    HostName 172.16.0.2
+    User user
+    IdentityFile ~/.ssh/id_ed25519_kali
+    ProxyJump debian1-jump
+    
+Файл: /etc/ssh/sshd_config на debian2
+Protocol 2
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+UsePAM yes
+PubkeyAuthentication yes
+PermitRootLogin no
+AllowUsers user
+X11Forwarding no
+AllowTcpForwarding no
+PermitTunnel no
+KexAlgorithms curve25519-sha256@libssh.org
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+LogLevel VERBOSE
+ClientAliveInterval 300
+ClientAliveCountMax 2rcvd: 135
 
--. 192.168.1.130/26
-
-Маска: 255.255.255.192
-Адрес сети: 192.168.1.128
-Broadcast: 192.168.1.191
-Диапазон хостов: 192.168.1.129 – 192.168.1.190
-
--. 192.168.10.70/27
-
-Маска: 255.255.255.224
-Адрес сети: 192.168.10.64
-Broadcast: 192.168.10.95
-Диапазон хостов: 192.168.10.65 – 192.168.10.94
-
--. 172.16.0.200/28
-
-Маска: 255.255.255.240
-Адрес сети: 172.16.0.192
-Broadcast: 172.16.0.207
-Диапазон хостов: 172.16.0.193 – 172.16.0.206
-
-Часть C — Деление сети
-
--. Разделите сеть 192.168.1.0/24 на 8 подсетей
-Для получения 8 подсетей необходимо заимствовать 3 бита из хостовой части ($2^3 = 8$).
-
-Новая маска: /27 (255.255.255.224)
-Шаг подсети: 32 адреса (30 хостов)
-Первые 3 подсети полностью:
-Сеть: 192.168.1.0, Broadcast: 192.168.1.31, Хосты: .1 – .30
-Сеть: 192.168.1.32, Broadcast: 192.168.1.63, Хосты: .33 – .62
-Сеть: 192.168.1.64, Broadcast: 192.168.1.95, Хосты: .65 – .94
--. Есть сеть 10.0.0.0/24. Нужно минимум 30 хостов в каждой подсети.
-Для 30 хостов требуется 30 + 2 = 32 адреса. 
-маска: /27 (255.255.255.224)
-Количество подсетей: 8 
-1	10.0.0.0/27	10.0.0.1 – 10.0.0.30	10.0.0.31	
-2	10.0.0.32/27	10.0.0.33 – 10.0.0.62	10.0.0.63	
-3	10.0.0.64/27	10.0.0.65 – 10.0.0.94	10.0.0.95	
-4	10.0.0.96/27	10.0.0.97 – 10.0.0.126	10.0.0.127	
-5	10.0.0.128/27	10.0.0.129 – 10.0.0.158	10.0.0.159	
-6	10.0.0.160/27	10.0.0.161 – 10.0.0.190	10.0.0.191	
-7	10.0.0.192/27	10.0.0.193 – 10.0.0.222	10.0.0.223	
-8	10.0.0.224/27	10.0.0.225 – 10.0.0.254	10.0.0.255
+Проверка с ПК KALI.
+ssh -J user@192.168.10.1 user@172.16.0.2
+```
